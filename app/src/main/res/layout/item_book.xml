@@ -26,12 +26,12 @@
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="แก้ไข" />
+            android:text="@string/edit" />
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ลบ" />
+            android:text="@string/delete" />
     </LinearLayout>
 </layout>

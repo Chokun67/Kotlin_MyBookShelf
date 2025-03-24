@@ -26,6 +26,6 @@
             android:id="@+id/btnDeleteVolume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ลบ" />
+            android:text="@string/delete" />
     </LinearLayout>
 </layout>

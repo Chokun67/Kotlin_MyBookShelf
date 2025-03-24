@@ -36,13 +36,15 @@
                 android:id="@+id/etVolumeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ชื่อเล่ม (Vol.)" />
+                android:minHeight="48dp"
+                android:paddingVertical="12dp"
+                android:hint="@string/hint_volume_name" />
 
             <Button
                 android:id="@+id/btnAddVolume"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="เพิ่มเล่ม" />
+                android:text="@string/btn_add_volume" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewVolumes"

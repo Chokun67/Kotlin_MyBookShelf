@@ -18,7 +18,7 @@
             android:id="@+id/btnAddBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="เพิ่มหนังสือใหม่" />
+            android:text="@string/add_book" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBooks"

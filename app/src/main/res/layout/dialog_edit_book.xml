@@ -14,19 +14,19 @@
             android:id="@+id/etBookTitle"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="ชื่อหนังสือ" />
+            android:hint="@string/book_name" />
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="บันทึก" />
+            android:text="@string/button_ok" />
 
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ยกเลิก" />
+            android:text="@string/button_cancel" />
 
     </LinearLayout>
 </layout>
