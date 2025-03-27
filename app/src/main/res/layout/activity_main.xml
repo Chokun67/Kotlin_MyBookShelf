@@ -20,6 +20,14 @@
             android:layout_height="wrap_content"
             android:text="@string/add_book" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="@string/search_book"
+            android:iconifiedByDefault="false"
+            android:layout_marginTop="8dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBooks"
             android:layout_width="match_parent"

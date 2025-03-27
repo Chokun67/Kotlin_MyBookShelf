@@ -4,4 +4,5 @@
     <string name="button_cancel">ยกเลิก</string>
     <string name="delete">ลบ</string>
     <string name="edit">แก้ไข</string>
+    <string name="search_book">ค้นหาชื่อหนังสือ</string>
 </resources>

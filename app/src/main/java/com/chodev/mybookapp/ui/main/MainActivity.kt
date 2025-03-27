@@ -30,21 +30,30 @@ class MainActivity : AppCompatActivity() {
         observeViewModel()
 
         binding.btnAddBook.setOnClickListener {
-            // เปิด Dialog เพื่อเพิ่มหนังสือใหม่
             val dialog = EditBookDialog(this) { newTitle ->
                 mainViewModel.addBook(newTitle)
             }
             dialog.show()
         }
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mainViewModel.filterBooks(newText.orEmpty())
+                return true
+            }
+        })
     }
 
+
+
     private fun setupRecyclerView() {
-        // **ต้องกำหนด LayoutManager ก่อนเสมอ**
         binding.recyclerViewBooks.layoutManager = LinearLayoutManager(this)
 
         bookAdapter = BookAdapter(
             onItemClick = { book ->
-                // กดเข้าไปหน้าที่ 2 (DetailActivity)
                 val intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra("BOOK_ID", book.id)
                 intent.putExtra("BOOK_TITLE", book.title)
@@ -65,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        mainViewModel.bookList.observe(this) { books ->
+        mainViewModel.filteredBooks.observe(this) { books ->
             bookAdapter.submitList(books)
         }
     }

@@ -14,18 +14,26 @@ import kotlinx.coroutines.launch
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
 
     private val volumeRepository: VolumeRepository
-
-    // จะผูก bookId -> volumeList
     private val _bookId = MutableLiveData<Int>()
     val volumeList: LiveData<List<Volume>>
+
+    private val _filteredVolumeList = MutableLiveData<List<Volume>>()
+    val filteredVolumeList: LiveData<List<Volume>> get() = _filteredVolumeList
+
+    private var currentVolumes: List<Volume> = listOf()
 
     init {
         val db = AppDatabase.getInstance(application)
         volumeRepository = VolumeRepository(db.volumeDao())
 
-        // switchMap เมื่อ bookId เปลี่ยน เราจะโหลด volumeList ใหม่
         volumeList = _bookId.switchMap { id ->
             volumeRepository.getVolumesByBookId(id)
+        }
+
+        // observe volumeList to keep original data
+        volumeList.observeForever { volumes ->
+            currentVolumes = volumes
+            _filteredVolumeList.value = volumes
         }
     }
 
@@ -47,5 +55,20 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             volumeRepository.deleteVolume(volume)
         }
+    }
+
+    fun filterVolumes(query: String) {
+        _filteredVolumeList.value = if (query.isBlank()) {
+            currentVolumes
+        } else {
+            currentVolumes.filter {
+                it.volumeName.contains(query, ignoreCase = true)
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        volumeList.removeObserver { }
     }
 }
