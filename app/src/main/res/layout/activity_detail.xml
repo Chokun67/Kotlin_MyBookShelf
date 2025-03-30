@@ -17,7 +17,7 @@
             android:id="@+id/myToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/green_primary"
             app:layout_scrollFlags="scroll|enterAlways"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -41,6 +41,7 @@
                 android:id="@+id/btnAddVolume"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_dark"
                 android:text="@string/btn_add_volume" />
 
             <androidx.appcompat.widget.SearchView
