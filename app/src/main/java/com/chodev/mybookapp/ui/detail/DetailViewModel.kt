@@ -15,7 +15,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
     private val volumeRepository: VolumeRepository
     private val _bookId = MutableLiveData<Int>()
-    val volumeList: LiveData<List<Volume>>
+    private val volumeList: LiveData<List<Volume>>
 
     private val _filteredVolumeList = MutableLiveData<List<Volume>>()
     val filteredVolumeList: LiveData<List<Volume>> get() = _filteredVolumeList

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.chodev.mybookapp.data.dao.BookDao
 import com.chodev.mybookapp.data.dao.VolumeDao
 import com.chodev.mybookapp.data.model.Book
@@ -28,10 +29,18 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "my_book_database"
-                ).build()
+                )
+                    .addCallback(object : RoomDatabase.Callback() {
+                        override fun onOpen(db: SupportSQLiteDatabase) {
+                            super.onOpen(db)
+                            db.execSQL("PRAGMA foreign_keys=ON")
+                        }
+                    })
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
+
     }
 }
